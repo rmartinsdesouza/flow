@@ -20,4 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/projects', [ProjectController::class, 'index'])->name('project.index');
+Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
+Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');
+Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');

@@ -5,7 +5,7 @@
         {{ session('message') }}
     </div>
 @endif
-
+<a href="{{ route('projects.create') }}">Criar Novo</a>
 <table>
     <thead>
         <tr>
@@ -21,30 +21,12 @@
     <tbody>
         @foreach ($projects as $project)
             <tr>
-                <td>
-                    {{ $project->id }}
-                </td>
-
-                <td>
-                    {{ $project->name }}
-                </td>
-
-                <td>
-                    {{ $project->description }}
-                </td>
-
-                <td>
-                    {{ $project->id_owner }}
-                </td>
-
-                <td>
-                    {{ $project->id_status }}
-                </td>
-
-                <td>
-                    {{ $project->active}}
-                </td>
-
+                <td>{{ $project->id }}</td>
+                <td>{{ $project->name }}</td>
+                <td>{{ $project->description }}</td>
+                <td>{{ $project->id_owner }}</td>
+                <td>{{ $project->id_status }}</td>
+                <td>{{ $project->active}}</td>
                 <td>
                     <a href="#">Ver</a>
                     <a href="#">Editar</a>
@@ -55,5 +37,3 @@
         @endforeach
     </tbody>
 </table>
-
-

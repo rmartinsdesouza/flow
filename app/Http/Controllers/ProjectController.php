@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreupdateProject;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -28,6 +29,7 @@ class ProjectController extends Controller
     public function create()
     {
         //
+        return view('admin.projects.create');
     }
 
     /**
@@ -35,10 +37,16 @@ class ProjectController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * 
      */
-    public function store(Request $request)
+    // Utiliza a class de request StoreupdateProject para validação ou inves do Resquest padrão 
+    public function store(StoreupdateProject $request)
     {
-        //
+        // dd($request->all());
+
+        Project::create($request->all());
+        
+        return redirect()->route('projects.index');
     }
 
     /**
