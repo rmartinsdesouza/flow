@@ -28,10 +28,8 @@
                 <td>{{ $project->id_status }}</td>
                 <td>{{ $project->active}}</td>
                 <td>
-                    <a href="#">Ver</a>
-                    <a href="#">Editar</a>
-                    {{-- <a href="{{ route('projects.show', $project->id) }}" >Ver</a>
-                    <a href="{{ route('projects.edit', $project->id) }}" >Edit</a> --}}
+                    <a href="{{ route('projects.show', $project->id) }}" >Ver</a>
+                    {{-- <a href="{{ route('projects.edit', $project->id) }}" >Edit</a> --}}
                 </td>
             </tr>
         @endforeach

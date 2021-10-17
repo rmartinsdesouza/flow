@@ -55,9 +55,13 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show($id)
     {
-        //
+        if (!$project = Project::find($id)) {
+            return redirect()->route('projects.index');
+        }
+
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
@@ -89,8 +93,16 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy($id)
     {
-        //
+        if (!$project = Project::find($id)) {
+            return redirect()->route('projects.index');
+        }
+        
+        $project->delete();
+
+        return redirect()
+            ->route('projects.index')
+            ->with('message', 'Projeto Deletado com sucesso!');
     }
 }
