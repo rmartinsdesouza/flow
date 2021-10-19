@@ -1,11 +1,18 @@
 <h1>Listagem dos Projetos</h1>
+<a href="{{ route('projects.create') }}">Criar Novo</a>
 
 @if (session('message'))
     <div>
         {{ session('message') }}
     </div>
 @endif
-<a href="{{ route('projects.create') }}">Criar Novo</a>
+
+<form action="{{ route('projects.search') }}" method="post">
+    @csrf
+    <input type="text" name="search" placeholder="Filtrar:">
+    <button type="submit">Filtrar</button>
+</form>
+
 <table>
     <thead>
         <tr>
@@ -29,9 +36,16 @@
                 <td>{{ $project->active}}</td>
                 <td>
                     <a href="{{ route('projects.show', $project->id) }}" >Ver</a>
-                    {{-- <a href="{{ route('projects.edit', $project->id) }}" >Edit</a> --}}
+                    <a href="{{ route('projects.edit', $project->id) }}" >Edit</a>
                 </td>
             </tr>
         @endforeach
     </tbody>
 </table>
+
+<hr>
+@if(isset($filters))
+    {{ $projects->appends($projects)->links() }}
+@else
+    {{ $projects->links() }}
+@endif

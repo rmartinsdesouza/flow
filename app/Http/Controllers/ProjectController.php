@@ -16,7 +16,7 @@ class ProjectController extends Controller
     public function index()
     {
         //
-        $projects = Project::latest()->paginate();
+        $projects = Project::paginate();
 
         return view('admin.projects.index', compact('projects'));
     }
@@ -46,7 +46,9 @@ class ProjectController extends Controller
 
         Project::create($request->all());
         
-        return redirect()->route('projects.index');
+        return redirect()
+            ->route('projects.index')
+            ->with('message', 'Projeto Criado com sucesso!');
     }
 
     /**
@@ -70,21 +72,38 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit($id)
     {
-        //
+        if (!$project = Project::find($id)) {
+            return redirect()->back();
+        }
+
+        return view('admin.projects.edit', compact('project'));
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Project $project)
+    public function update(StoreupdateProject $request, $id)
     {
-        //
+        if (!$project = Project::find($id)) {
+            return redirect()->back();
+        }
+        
+        $project->update($request->all());
+
+        return redirect()
+                ->route('projects.index')
+                ->with('message', 'Projeto atualizado com sucesso!');
+    }
+
+
+    public function search(Request $request)
+    {
+        $filters = $request->all();
+
+        $projects = Project::where('name', 'LIKE', "%{$request->search}%")
+                                ->orWhere('description', 'LIKE', "%{$request->search}%")
+                                ->paginate(2);
+        return view('admin.projects.index', compact('projects'));
     }
 
     /**
