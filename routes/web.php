@@ -16,9 +16,7 @@ use App\Http\Controllers\{
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 
 Route::any('/posts/search', [ProjectController::class, 'search'])->name('projects.search');
@@ -29,3 +27,14 @@ Route::delete('/projects/{id}', [ProjectController::class, 'destroy'])->name('pr
 Route::get('/projects/{id}', [ProjectController::class, 'show'])->name('projects.show');
 Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+require __DIR__ . '/auth.php';

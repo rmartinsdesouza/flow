@@ -1,4 +1,6 @@
-<h1>Listagem dos Projetos</h1>
+@extends('admin.layouts.app')
+@section('title', 'Listagem dos Projetos')
+@section('content')
 <a href="{{ route('projects.create') }}">Criar Novo</a>
 
 @if (session('message'))
@@ -12,6 +14,8 @@
     <input type="text" name="search" placeholder="Filtrar:">
     <button type="submit">Filtrar</button>
 </form>
+
+<h1>Projetos</h1>
 
 <table>
     <thead>
@@ -49,3 +53,4 @@
 @else
     {{ $projects->links() }}
 @endif
+@endsection
