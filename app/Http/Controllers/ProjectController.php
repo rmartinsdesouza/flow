@@ -16,7 +16,7 @@ class ProjectController extends Controller
     public function index()
     {
         //
-        $projects = Project::paginate();
+        $projects = Project::paginate(5);
 
         return view('admin.projects.index', compact('projects'));
     }
@@ -58,12 +58,13 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {               
         if (!$project = Project::find($id)) {
             return redirect()->route('projects.index');
         }
+        //  dd($project->status);
+        return view('admin.projects.show', compact('project'));        
 
-        return view('admin.projects.show', compact('project'));
     }
 
     /**
@@ -102,7 +103,7 @@ class ProjectController extends Controller
 
         $projects = Project::where('name', 'LIKE', "%{$request->search}%")
                                 ->orWhere('description', 'LIKE', "%{$request->search}%")
-                                ->paginate(2);
+                                ->paginate();
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -124,4 +125,5 @@ class ProjectController extends Controller
             ->route('projects.index')
             ->with('message', 'Projeto Deletado com sucesso!');
     }
+
 }
