@@ -28,9 +28,12 @@
 
             <!-- LOGO -->
             <div class="topbar-left">
-                <a href="#" class="logo">
+                <a href="#" class="logo">FLOW System
                     <span class="logo-light">
-                            <i class="mdi mdi-camera-control"></i> Jassa
+                        {{-- <img src="/images/w_flow_Logo.jpg" alt="" height="25" /> --}}
+                        {{-- <img src="/images/w_flow_Logo.jpg" height="55" /> --}}
+                        {{-- <img src="/images/Flow_33.gif" height="155" /> --}}                        
+
                         </span>
                     <span class="logo-sm">
                             <i class="mdi mdi-camera-control"></i>
@@ -44,9 +47,11 @@
                     <!-- language-->
                     <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
                         <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <img src="/images/us_flag.jpg" class="mr-2" height="12" alt="" /> English <span class="mdi mdi-chevron-down"></span>
+                            <img src="/images/brazil_flag.png" class="mr-2" height="14" alt="" /> Brasil <span class="mdi mdi-chevron-down"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated language-switch">
+                            
+                            <a class="dropdown-item" href="#"><img src="/images/us_flag.jpg" alt="" height="16" /><span> English </span></a>
                             <a class="dropdown-item" href="#"><img src="/images/french_flag.jpg" alt="" height="16" /><span> French </span></a>
                             <a class="dropdown-item" href="#"><img src="/images/spain_flag.jpg" alt="" height="16" /><span> Spanish </span></a>
                             <a class="dropdown-item" href="#"><img src="/images/russia_flag.jpg" alt="" height="16" /><span> Russian </span></a>
@@ -317,7 +322,8 @@
 
                     <div class="row">
 
-                        <div class="col-sm-6 col-xl-3">
+                        @yield('section')
+                        {{-- <div class="col-sm-6 col-xl-3">
                             <div class="card">
                                 <div class="card-heading p-4">
                                     <div class="mini-stat-icon float-right">
@@ -417,8 +423,8 @@
                         </div>
                         <!-- end col -->
                     </div>
-                    <!-- end row -->
-
+                    <!-- end row --> --}}
+{{-- 
                     <div class="row">
                         <div class="col-xl-4">
                             <div class="card m-b-30">
@@ -551,7 +557,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <!-- START ROW -->
                     <div class="row">
