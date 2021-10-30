@@ -1,261 +1,348 @@
-{{-- @extends('admin.layouts.app') --}}
+@extends('admin.layouts.app')
 @section('title', 'Listagem dos Projetos')
+@section('module', 'Projetos')
+@section('class-module')
 @section('content')
-
-
-
 
 {{-- <form action="{{ route('projects.search') }}" method="post">
   @csrf
   <input type="text" name="search" placeholder="Filtrar:">
   <button type="submit">Filtrar</button>
 </form> --}}
-
-
-<!-- START ROW -->
-{{-- Rodrigo --}}
 <div class="row">
-  <div class="form-group mb-0">
-    <form role="search" class="app-search" action="{{ route('projects.search') }}" method="post">
-      @csrf
-      <ul><input type="text" class="form-control" name="search" placeholder="Filtrar.."></ul>
-      <ul><button type="submit"><i class="fa fa-search"></i></button></ul>
+        <div class="col-lg-12">
+    <a href="{{ route('projects.create') }}">
+        <span class="material-icons">
+          add_circle_outline
+        </span>
+      Novo</a>
 
-
-      {{-- <ul><a href="{{ route('projects.create') }}">Criar Novo</a></ul> --}}
-
-  </div>
-  </form>
-</div>
-
-
-<div class="row">
-  <div class="col-xl-12">
-    <div class="card m-b-30">
-      <div class="card-body">
-        <h4 class="mt-0 header-title mb-4">    <ul><a href="{{ route('projects.create') }}">
-          Criar Novo</a></ul></h4>
-        <div class="table-responsive">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Descrição</th>
-                <th scope="col">Dono</th>
-                <th scope="col">Status</th>
-                <th scope="col">Ativo</th>
-                <th scope="col" colspan="2">Ação</th>
-
-              </tr>
-            </thead>
-            <tbody>
-              @foreach ($projects as $project)
-              <tr>
-                <td>{{ $project->id }}</td>
-                <td>{{ $project->name }}</td>
-                <td>{{ $project->description }}</td>
-                <td>{{ $project->id_owner }}</td>
-
-                <td><span class="badge badge-success">{{ $project->status->name }}</span></td>
-                <td>Ativo</td>
-                {{-- <td>
-                  <div>
-                    <img src="/images/user-2.jpg" alt="" class="thumb-md rounded-circle mr-2"> Jassa
-                  </div>
-                </td>
-                <td>Ludhiana</td>
-                <td>15/1/2021</td> --}}
-
-                <td>
-                  <div>
-                    <a href="{{ route('projects.show', $project->id) }}" class="btn btn-primary btn-sm">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                      </svg>
-                      {{-- Ver --}}
-                    </a>
-
-                    <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-primary btn-sm">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                      </svg>
-                      {{-- Edit --}}
-                    </a>
-
-                  </div>
-                </td>
-              </tr>
-
-              {{-- <tr>
-                <td>Jassa</td>
-                <td><span class="badge badge-warning">Pending</span></td>
-                <td>$3,120,000</td>
-                <td>
-                  <div>
-                    <img src="/images/user-3.jpg" alt="" class="thumb-md rounded-circle mr-2"> Jassa
-                  </div>
-                </td>
-                <td>Ludhiana</td>
-                <td>16/1/2021</td>
-
-                <td>
-                  <div>
-                    <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>Jassa</td>
-                <td><span class="badge badge-success">Delivered</span></td>
-                <td>$6,360,000</td>
-                <td>
-                  <div>
-                    <img src="/images/user-4.jpg" alt="" class="thumb-md rounded-circle mr-2"> Jassa
-                  </div>
-                </td>
-                <td>Ludhiana</td>
-                <td>17/1/2021</td>
-
-                <td>
-                  <div>
-                    <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>Jassa</td>
-                <td><span class="badge badge-danger">Cancel</span></td>
-                <td>$5,200,000</td>
-                <td>
-                  <div>
-                    <img src="/images/user-5.jpg" alt="" class="thumb-md rounded-circle mr-2"> Jassa
-                  </div>
-                </td>
-                <td>Ludhiana</td>
-                <td>18/1/2021</td>
-
-                <td>
-                  <div>
-                    <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>Jassa</td>
-                <td><span class="badge badge-success">Delivered</span></td>
-                <td>$7,250,000</td>
-                <td>
-                  <div>
-                    <img src="/images/user-6.jpg" alt="" class="thumb-md rounded-circle mr-2"> Jassa
-                  </div>
-                </td>
-                <td>Ludhiana</td>
-                <td>19/1/2021</td>
-
-                <td>
-                  <div>
-                    <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                  </div>
-                </td>
-              </tr> --}}
-              @endforeach
-            </tbody>
-          </table>
         </div>
+</div>
+<!-- START GRID -->
+<div class="users-table table-wrapper">
+  <table class="posts-table">
+    <thead>
+      <tr class="users-table-info">
+        <th>
+          <label class="users-table__checkbox ms-20">
+            <input type="checkbox" class="check-all">
+        </th>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Dono</th>
+        <th>Status</th>
+        <th>Ativo</th>
+        <th colspan="2">Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach ($projects as $project)
+      <tr>
+        <td>
+          <label class="users-table__checkbox">
+            <input type="checkbox" class="check">
+            {{-- <div class="categories-table-img">
+              <picture>
+                <source srcset="./elegant/img/categories/01.webp" type="image/webp"><img
+                  src="./elegant/img/categories/01.jpg" alt="category">
+              </picture>
+            </div> --}}
+          </label>
+        </td>
+        {{--
+      <tr> --}}
+        {{-- <td>{{ $project->id }}</td>
+        <td>{{ $project->name }}</td>
+        <td>{{ $project->description }}</td>
+        <td>{{ $project->id_owner }}</td> --}}
+        <td>
+          <div class="pages-table-img">
+            <picture>
+              <source srcset="./elegant/img/avatar/avatar-face-04.webp" type="image/webp"><img
+                src="./elegant/img/avatar/avatar-face-04.png" alt="User Name">
+            </picture>
+            {{ $project->name }}
+          </div>
+        </td>
+        <td>{{ $project->description }}</td>
+        <td>{{ $project->id_owner }}</td>
+        <td><span class="badge-pending">{{ $project->status->name }}}</span></td>
+        <td>{{ $project->active }}</td>
+        <td>
+          <span class="p-relative">
+            <a href="{{ route('projects.show', $project->id) }}" class="btn btn-primary btn-sm ">
+              <span class="material-icons">
+                search
+              </span>
+            </a>
 
-      </div>
-    </div>
-  </div>
+            <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-primary btn-sm">
+              <span class="material-icons">
+                edit
+              </span>
+            </a>
+        </td>
+      </tr>
+      @endforeach
+      {{-- <tr>
+        <td>
+          <label class="users-table__checkbox">
+            <input type="checkbox" class="check">
+            <div class="categories-table-img">
+              <picture>
+                <source srcset="./elegant/img/categories/02.webp" type="image/webp"><img
+                  src="./elegant/img/categories/02.jpg" alt="category">
+              </picture>
+            </div>
+          </label>
+        </td>
+        <td>
+          {{ $project->description }}
+        </td>
+        <td>
+          <div class="pages-table-img">
+            <picture>
+              <source srcset="./elegant/img/avatar/avatar-face-03.webp" type="image/webp"><img
+                src="./elegant/img/avatar/avatar-face-03.png" alt="User Name">
+            </picture>
+            Annette Black
+          </div>
+        </td>
+        <td><span class="badge-pending">Pending</span></td>
+        <td>23.04.2021</td>
+        <td>
+          <span class="p-relative">
+            <button class="dropdown-btn transparent-btn" type="button" title="More info">
+              <div class="sr-only">More info</div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-more-horizontal" aria-hidden="true">
+                <circle cx="12" cy="12" r="1"></circle>
+                <circle cx="19" cy="12" r="1"></circle>
+                <circle cx="5" cy="12" r="1"></circle>
+              </svg>
+            </button>
+            <ul class="users-item-dropdown dropdown">
+              <li><a href="##">Edit</a></li>
+              <li><a href="##">Quick edit</a></li>
+              <li><a href="##">Trash</a></li>
+
+            </ul>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label class="users-table__checkbox">
+            <input type="checkbox" class="check">
+            <div class="categories-table-img">
+              <picture>
+                <source srcset="./elegant/img/categories/03.webp" type="image/webp"><img
+                  src="./elegant/img/categories/03.jpg" alt="category">
+              </picture>
+            </div>
+          </label>
+        </td>
+        <td>
+          Helping a local business reinvent itself
+        </td>
+        <td>
+          <div class="pages-table-img">
+            <picture>
+              <source srcset="./elegant/img/avatar/avatar-face-02.webp" type="image/webp"><img
+                src="./elegant/img/avatar/avatar-face-02.png" alt="User Name">
+            </picture>
+            Kathryn Murphy
+          </div>
+        </td>
+        <td><span class="badge-active">Active</span></td>
+        <td>17.04.2021</td>
+        <td>
+          <span class="p-relative">
+            <button class="dropdown-btn transparent-btn" type="button" title="More info">
+              <div class="sr-only">More info</div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-more-horizontal" aria-hidden="true">
+                <circle cx="12" cy="12" r="1"></circle>
+                <circle cx="19" cy="12" r="1"></circle>
+                <circle cx="5" cy="12" r="1"></circle>
+              </svg>
+            </button>
+            <ul class="users-item-dropdown dropdown">
+              <li><a href="##">Edit</a></li>
+              <li><a href="##">Quick edit</a></li>
+              <li><a href="##">Trash</a></li>
+            </ul>
+          </span>
+        </td>
+      </tr> --}}
+      {{-- <tr>
+        <td>
+          <label class="users-table__checkbox">
+            <input type="checkbox" class="check">
+            <div class="categories-table-img">
+              <picture>
+                <source srcset="./elegant/img/categories/04.webp" type="image/webp"><img
+                  src="./elegant/img/categories/04.jpg" alt="category">
+              </picture>
+            </div>
+          </label>
+        </td>
+        <td>
+          Caring is the new marketing
+        </td>
+        <td>
+          <div class="pages-table-img">
+            <picture>
+              <source srcset="./elegant/img/avatar/avatar-face-05.webp" type="image/webp"><img
+                src="./elegant/img/avatar/avatar-face-05.png" alt="User Name">
+            </picture>
+            Guy Hawkins
+          </div>
+        </td>
+        <td><span class="badge-active">Active</span></td>
+        <td>17.04.2021</td>
+        <td>
+          <span class="p-relative">
+            <button class="dropdown-btn transparent-btn" type="button" title="More info">
+              <div class="sr-only">More info</div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-more-horizontal" aria-hidden="true">
+                <circle cx="12" cy="12" r="1"></circle>
+                <circle cx="19" cy="12" r="1"></circle>
+                <circle cx="5" cy="12" r="1"></circle>
+              </svg>
+            </button>
+            <ul class="users-item-dropdown dropdown">
+              <li><a href="##">Edit</a></li>
+              <li><a href="##">Quick edit</a></li>
+              <li><a href="##">Trash</a></li>
+            </ul>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label class="users-table__checkbox">
+            <input type="checkbox" class="check">
+            <div class="categories-table-img">
+              <picture>
+                <source srcset="./elegant/img/categories/01.webp" type="image/webp"><img
+                  src="./elegant/img/categories/01.jpg" alt="category">
+              </picture>
+            </div>
+          </label>
+        </td>
+        <td>
+          How to build a loyal community online and offline
+        </td>
+        <td>
+          <div class="pages-table-img">
+            <picture>
+              <source srcset="./elegant/img/avatar/avatar-face-03.webp" type="image/webp"><img
+                src="./elegant/img/avatar/avatar-face-03.png" alt="User Name">
+            </picture>
+            Robert Fox
+          </div>
+        </td>
+        <td><span class="badge-active">Active</span></td>
+        <td>17.04.2021</td>
+        <td>
+          <span class="p-relative">
+            <button class="dropdown-btn transparent-btn" type="button" title="More info">
+              <div class="sr-only">More info</div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-more-horizontal" aria-hidden="true">
+                <circle cx="12" cy="12" r="1"></circle>
+                <circle cx="19" cy="12" r="1"></circle>
+                <circle cx="5" cy="12" r="1"></circle>
+              </svg>
+            </button>
+            <ul class="users-item-dropdown dropdown">
+              <li><a href="##">Edit</a></li>
+              <li><a href="##">Quick edit</a></li>
+              <li><a href="##">Trash</a></li>
+            </ul>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label class="users-table__checkbox">
+            <input type="checkbox" class="check">
+            <div class="categories-table-img">
+              <picture>
+                <source srcset="./elegant/img/categories/03.webp" type="image/webp"><img
+                  src="./elegant/img/categories/03.jpg" alt="category">
+              </picture>
+            </div>
+          </label>
+        </td>
+        <td>
+          How to build a loyal community online and offline
+        </td>
+        <td>
+          <div class="pages-table-img">
+            <picture>
+              <source srcset="./elegant/img/avatar/avatar-face-03.webp" type="image/webp"><img
+                src="./elegant/img/avatar/avatar-face-03.png" alt="User Name">
+            </picture>
+            Robert Fox
+          </div>
+        </td>
+        <td><span class="badge-active">Active</span></td>
+        <td>17.04.2021</td>
+        <td>
+          <span class="p-relative">
+            <button class="dropdown-btn transparent-btn" type="button" title="More info">
+              <div class="sr-only">More info</div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-more-horizontal" aria-hidden="true">
+                <circle cx="12" cy="12" r="1"></circle>
+                <circle cx="19" cy="12" r="1"></circle>
+                <circle cx="5" cy="12" r="1"></circle>
+              </svg>
+            </button>
+            <ul class="users-item-dropdown dropdown">
+              <li><a href="##">Edit</a></li>
+              <li><a href="##">Quick edit</a></li>
+              <li><a href="##">Trash</a></li>
+            </ul>
+          </span>
+        </td>
+      </tr> --}}
+    </tbody>
+  </table>
 
 </div>
-<!-- END ROW -->
-
-<hr>
-@if(isset($filters))
-{{ $projects->appends($projects)->links() }}
-@else
-{{ $projects->links() }}
-@endif
-@endsection
-
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">
-          <i class="fa fa-home"></i>
-          Home
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fa fa-envelope-o">
-            <span class="badge badge-danger">11</span>
-          </i>
-          Link
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">
-          <i class="fa fa-envelope-o">
-            <span class="badge badge-warning">11</span>
-          </i>
-          Disabled
-        </a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-envelope-o">
-            <span class="badge badge-primary">11</span>
-          </i>
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-    <ul class="navbar-nav ">
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fa fa-bell">
-            <span class="badge badge-info">11</span>
-          </i>
-          Test
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fa fa-globe">
-            <span class="badge badge-success">11</span>
-          </i>
-          Test
-        </a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
+<!-- END GRID -->
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
 </nav>
+
+
+@if(isset($filters))
+<{{ $projects->appends($projects)->links() }}
+  @else
+  {{ $projects->links() }}
+  @endif
+  @endsection

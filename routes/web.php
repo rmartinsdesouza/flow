@@ -39,7 +39,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 // Route::get('/', function () {
@@ -47,6 +47,6 @@ Route::get('/', function () {
 // });
 
 require __DIR__ . '/auth.php';
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
