@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('content')
-
+@include('shared.btn-novo')
 <h2> View List Index </h2>
 
 <table>

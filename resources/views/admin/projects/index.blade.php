@@ -10,14 +10,11 @@
   <button type="submit">Filtrar</button>
 </form> --}}
 <div class="row">
-        <div class="col-lg-12">
-    <a href="{{ route('projects.create') }}">
-        <span class="material-icons">
-          add_circle_outline
-        </span>
-      Novo</a>
+  <div class="col-lg-12">
+    {{-- <a href="{{ route('projects.create') }}"> --}}
+      @include('admin.layouts.btn-novo')
+  </div>
 
-        </div>
 </div>
 <!-- START GRID -->
 <div class="users-table table-wrapper">
@@ -321,23 +318,7 @@
 
 </div>
 <!-- END GRID -->
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+
 
 
 @if(isset($filters))
